@@ -21,7 +21,7 @@
     
     {% if messages %}
       <div class="message-container"></div>
-    {% ednif %}
+    {% endif %}
 
     {% block page_header %}
       <p>Extra header area incase i want to add anything else below my man header</p>
@@ -29,8 +29,13 @@
 
     {% block content %}
     {% endblock %}
+
     <footer class="container-fluid fixed-bottom">
       <p>Area for my footer. Photographers icons and social media page.</p>
     </footer>
+
+    {% block postloadjs %}
+    <!--Any javascript to be loaded at the end of the body.-->
+    {% endblock %}
   </body>
 </html>
