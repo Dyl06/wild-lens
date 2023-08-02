@@ -16,7 +16,24 @@
   <body>
 
     <header class="container-fluid fixed-top">
-      <p>Area for my main header. Consistent across all pages</p>
+      
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#"><h1>Wild Lense Photography</h1></a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Buy Prints </a></li>
+            <li><a href="#">Sell Your Images</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li><a href="">Cart</a></li>
+            <li><a href="">Login</a></li>
+          </ul>
+        </div>
+      </nav>
     </header>
     
     {% if messages %}
@@ -24,7 +41,7 @@
     {% endif %}
 
     {% block page_header %}
-      <p>Extra header area incase i want to add anything else below my man header</p>
+      <p>Extra header area incase i want to add anything else below my main header</p>
     {% endblock %}
 
     {% block content %}
