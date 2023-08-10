@@ -3,10 +3,10 @@ html {
 }
 
 body {
-    background: url("/media/Background-wildlens.jpg") no-repeat center center fixed;
+    background: url("/media/Background-wildlens.webp") no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh-164px);
-    color: black;
+    color: black !important;
     font-family: 'Josefin Sans', sans-serif;
     font-size: larger;
 }
@@ -24,4 +24,14 @@ body {
     background: black;
     color: whitesmoke;
     min-width: 260px;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: grey;
+    z-index: -1;
 }
