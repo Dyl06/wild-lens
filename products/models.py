@@ -1,6 +1,9 @@
 from django.db import models, transaction
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from photographer.models import Photographer
 import uuid
+
 
 class Category(models.Model):
 
@@ -55,3 +58,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+@receiver(pre_save, sender=Product)
+def generate_sku_on_save(sender, instance, **kwargs):
+    if not instance.sku:
+        instance.sku = instance.generate_sku()
