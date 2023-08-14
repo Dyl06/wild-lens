@@ -19,10 +19,12 @@
       </div>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-col-xl-4 g-4">
-      {% for product in products %}
         <div class="col">
           <div class="card h-100">
             <img src="{{product.image.url}}" class="card-img-top" alt="{{ product.name }}">
+          </div>
+        </div>
+        <div class="col">
             <div class="card-body">
               <h5 class="card-title">{{ product.name }}</h5>
               <p class="card-text"> from £{{ product.price }}</p>
@@ -32,11 +34,8 @@
               <p class="card-text"><h4>Photographer:</h4>{{ product.photographer }}</p>
             </div>
             <div class="card-footer">
-              <a href="{% url 'product_page' product.id %}" class="btn btn-primary">Buy Now</a>
+              <a href="{% url 'product_page' product.id %}" class="btn btn-primary">Add to Basket</a>
             </div>
-          </div>
         </div>
-        {% endfor %}
-      </div>
-    
+    </div>
 {% endblock %}
