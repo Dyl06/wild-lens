@@ -72,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request', # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'photographer.context_processors.get_photographer_list'
             ],
         },
     },

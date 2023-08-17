@@ -19,11 +19,15 @@
           <li class="nav-item dropdown">
               <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Photographers</a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#"></a>P1</li>
-                <li><a class="dropdown-item" href="{% url 'products' %}?photgrapher=Charles_Henderson">P2</a></li>
-                <li><a class="dropdown-item" href="#">P3</a></li>
+                {% for photographer in get_photographer_list %}
+                  <li><a class="dropdown-item" href="{% url 'products' %}?photographer={{photographer}}">{{photographer}}</a></li>
+                {% endfor %}
+                
+                <!-- <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Bradley Henderson">Bradley Henderson</a></li>
+                <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Charles Henderson">Charles Henderson</a></li>
+                <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Nic Andrew">Nic Andrew</a></li> -->
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">All Photographers</a></li>
+                <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Bradley Henderson,Charles Henderson,Nic Andrew">All Photographers</a></li>
               </ul>
             </li>  
           <li class="nav-item dropdown">
@@ -46,8 +50,6 @@
         </form>
       </div>
     </nav>
-
-
 
 
    
