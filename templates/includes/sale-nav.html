@@ -19,13 +19,13 @@
           <li class="nav-item dropdown">
               <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Photographers</a>
               <ul class="dropdown-menu">
-                {% for photographer in get_photographer_list %}
+                <!-- {% for photographer in get_photographer_list %}
                   <li><a class="dropdown-item" href="{% url 'products' %}?photographer={{photographer}}">{{photographer}}</a></li>
-                {% endfor %}
+                {% endfor %} -->
                 
-                <!-- <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Bradley Henderson">Bradley Henderson</a></li>
+                <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Bradley Henderson">Bradley Henderson</a></li>
                 <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Charles Henderson">Charles Henderson</a></li>
-                <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Nic Andrew">Nic Andrew</a></li> -->
+                <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Nic Andrew">Nic Andrew</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Bradley Henderson,Charles Henderson,Nic Andrew">All Photographers</a></li>
               </ul>

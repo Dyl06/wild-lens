@@ -30,7 +30,7 @@ class SubCategory(models.Model):
 class Product(models.Model):
     category = models.ManyToManyField('Category')
     subcategory = models.ManyToManyField('SubCategory')
-    photographer = models.ForeignKey(Photographer, on_delete=models.CASCADE)
+    photographer = models.ForeignKey(Photographer, on_delete=models.CASCADE, default="")
     sku = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=255)
     description = models.TextField()

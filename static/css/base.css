@@ -32,6 +32,6 @@ body {
     top: 0;
     left: 0;
     position: fixed;
-    background: grey;
+    background: whitesmoke;
     z-index: -1;
 }
