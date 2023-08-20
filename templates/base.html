@@ -50,7 +50,7 @@
                   <a class="nav-link" href="{% url 'profile' %}">Sell Your Images</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
+                  <a class="nav-link" href="{% url 'photographer-profile' %}">About</a>
                 </li>
               </ul>
               <ul class="navbar-nav justify-content-end flex-grow-1">
@@ -66,7 +66,7 @@
                     {% if request.user.is_superuser %}
                       <li><a class="dropdown-item" href="#">Product Management</a></li>
                     {% endif %}
-                      <li><a class="dropdown-item" href="#">My Profile</a></li>
+                      <li><a class="dropdown-item" href="{% url 'edit-profile' %}">My Profile</a></li>
                       <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                     {% else %}
                       <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>

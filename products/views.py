@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product, Category, SubCategory  # Photographer
+from .models import Product, Category, SubCategory, Photographer
 
 # Create your views here.
 
@@ -24,13 +24,13 @@ def all_products(request):
             categories = Category.objects.filter(name__in=categories)
             print(categories)
 
-        # if 'photographer' in request.GET:
-        #     photographers = request.GET['photographer'].split(',')
-        #     print(photographers)
-        #     products = products.filter(photographer__name__in=photographers)
-        #     print(products)
-        #     photographers = Photographer.objects.filter(name__in=photographers)
-        #     print(photographers)
+        if 'photographer' in request.GET:
+            photographers = request.GET['photographer'].split(',')
+            print(photographers)
+            products = products.filter(photographer__name__in=photographers)
+            print(products)
+            photographers = Photographer.objects.filter(name__in=photographers)
+            print(photographers)
 
         if 'subcategory' in request.GET:
             subcategories = request.GET['subcategory'].split(',')
@@ -53,7 +53,7 @@ def all_products(request):
         'search': query,
         'categories': categories,
         'subcategories': subcategories,
-        # 'photographers': photographers,
+        'photographers': photographers,
     }
 
     return render(request, 'products/products.html', context)
