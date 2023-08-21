@@ -102,7 +102,11 @@
       <div class="bg-white d-flex justify-content-start">
         {% include 'includes/sale-nav.html' %}
       </div>
-
+      <div class="row bg-white text-center" id="delivery-banner">
+        <div class="col ">
+          <h4 class="logo-font my-1">Free delivery on orders over £{{ free_delivery_threshold }}!</h4>
+        </div>
+      </div>
   </header>
     
   {% if messages %}
