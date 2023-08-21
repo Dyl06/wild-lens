@@ -68,4 +68,4 @@ def product_page(request, product_id):
         'product': product,
     }
 
-    return render(request, 'products/product_page.html', context)
+    return render(request, 'products/product-page.html', context)
