@@ -58,17 +58,17 @@
                   <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="text-center">
                       <div><i class="fa-solid fa-user"></i></div>
-                      <p class="my-0">My Acoount</p>
+                      <p class="my-0">My Account</p>
                     </div>
                   </a>
                   <ul class="dropdown-menu">
-                    
+                  {% if request.user.is_authenticated %}  
                     {% if request.user.is_superuser %}
                       <li><a class="dropdown-item" href="#">Product Management</a></li>
                     {% endif %}
-                    {% if request.user.is_authenticated %}
-                      <li><a class="dropdown-item" href="{% url 'edit-profile' %}">My Profile</a></li>
-                      <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                    
+                      <li><a class="dropdown-item" href="{% url 'products' %}">My Profile</a></li>
+                      <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                       <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
                       <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
@@ -108,10 +108,14 @@
         </div>
       </div>
   </header>
-    
-  {% if messages %}
-    <div class="message-container"></div>
-  {% endif %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
   {% block page_header %}
     <p>Extra header area incase i want to add anything else below my main header</p>
