@@ -68,7 +68,7 @@
                           </span>
                           <span class="">Keep Shopping</span>
                       </a>
-                      <a type="submit" href="{% url 'product_page' product_id=product.id %}" class="btn btn-outline-dark btn-lg px-5"><i class="fa-solid fa-cart-shopping"></i> Add to Basket</a>
+                      <input type="submit" value="Add to Basket" class="btn btn-outline-dark btn-lg px-5"><i class="fa-solid fa-cart-shopping"></i></input>
                   </div>
                   <input type="hidden" name="redirect_url" value="{{ request.path }}">
               </div>
@@ -76,4 +76,5 @@
         </div>
 
     </div>
+
 {% endblock %}

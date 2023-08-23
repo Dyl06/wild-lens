@@ -10,183 +10,184 @@
 {% endblock %}
 
 {% block content %}
-
-<!-- <section class="h-100" style="background-color: #eee;">
-    <div class="container h-100 py-5">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-10">
-  
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-          </div>
-        {% if bag_items %}
-        {% for item in bag_items %}
+  <div class="overlay"></div>
+          <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px; width: 90vw; margin: 0 auto;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <!-- <h6 class="mb-0 align-end text-muted">Quantity: {{item.quantity}}</h6> -->
+                    </div>
+                    <hr class="my-4">
+                    {% if bag_items %}
+                    {% for item in bag_items %}
+                    {% csrf_token%}
+                    <div class="row d-flex justify-content-between align-items-center">
+                      <div class="col-md-3 col-lg-2 col-xl-3">
+                        <img
+                          src="{{item.product.image.url}}"
+                          class="img-fluid rounded-3" alt="{{item.product.name}}">
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <h4 class="text-black mb-0"><strong>{{item.product.name}}</strong></h4>
+                        <h6 class="text-muted">{{item.product.sku}}</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <h4 class="mb-0"><strong>Size:</strong> {{item.product.size}}</h4>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <button class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        
+                        <input id="form1" min="0" max="99" name="quantity" value="{{item.quantity}}" type="number"
+                          class="form-control form-control-sm" />
         
-          <div class="card rounded-3 mb-4">
-            <div class="card-body p-4">
-              <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-md-2 col-lg-2 col-xl-2">
-                  <img
-                    src="{{item.product.image.url}}"
-                    class="img-fluid rounded-3" alt="Cotton T-shirt">
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-3">
-                  <p class="lead fw-normal mb-2"><strong>{{ item.product.name }}</strong></p>
-                  <span class="text-muted">SKU: </span>{{ item.product.sku }}</p>
-                  <p><span class="text-muted">Size: </span>M 
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                  <button class="btn btn-link px-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  
-                  <input id="form1" min="0" name="quantity" value="{{item.quantity}}" type="number"
-                    class="form-control form-control-sm" />
-  
-                  <button class="btn btn-link px-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                    <i class="fas fa-plus"></i>
-                  </button>
-                </div>
-                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                  <h5 class="mb-0">Price:</h5>
-                  <h5 class="mb-0">{{item.product.price}}</h5>
-                </div>
-                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                  <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-          <div class="card">
-            <div class="card-body">
-              <button type="button" class="btn btn-outline-dark btn-lg px-5">Proceed to Pay</button>
-            </div>
-          </div>
+                        <button class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
+                        <h5 class="mb-0"><strong>£</strong> {{item.product.price}}</h5>
+                              </div>
+                              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                <a href="#!" product-id="{{item.product.id}}" class="text-danger remove-item"><i class="fas fa-trash fa-lg"></i></a>
+                              </div>
+                    </div> 
+                    <hr class="my-4">
+                    {% endfor %}
 
-          -->
-          <div class="overlay"></div>
-                  <div class="mt-5 card card-registration card-registration-2" style="border-radius: 15px; width: 90vw; margin: 0 auto;">
-                    <div class="card-body p-0">
-                      <div class="row g-0">
-                        <div class="col-lg-8">
-                          <div class="p-5">
-                            <div class="d-flex justify-content-between align-items-center mb-5">
-                              <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                              <h6 class="mb-0 align-end text-muted">Quantity: {{item.quantity}}</h6>
-                            </div>
-                            <hr class="my-4">
-                            {% for item in bag_items %}
-                            
-                            <div class="row d-flex justify-content-between align-items-center">
-                              <div class="col-md-3 col-lg-2 col-xl-3">
-                                <img
-                                  src="{{item.product.image.url}}"
-                                  class="img-fluid rounded-3" alt="{{item.product.name}}">
-                              </div>
-                              <div class="col-md-2 col-lg-2 col-xl-2">
-                                <h4 class="text-black mb-0"><strong>{{item.product.name}}</strong></h4>
-                                <h6 class="text-muted">{{item.product.sku}}</h6>
-                              </div>
-                              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <h4 class="mb-0"><strong>Size:</strong> {{item.product.size}}</h4>
-                              </div>
-                              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                  <i class="fas fa-minus"></i>
-                                </button>
-                                
-                                <input id="form1" min="0" name="quantity" value="{{item.quantity}}" type="number"
-                                  class="form-control form-control-sm" />
-                
-                                <button class="btn btn-link px-2"
-                                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                  <i class="fas fa-plus"></i>
-                                </button>
-                              </div>
-                              <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0"><strong>£</strong> {{item.product.price}}</h5>
-                              </div>
-                              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                              </div>
-                            </div>
-                            
-                            <hr class="my-4">
-                            {% endfor %}
-          
-                            
-          
-                            <div class="pt-5">
-                              <h6 class="mb-0"><a href="{% url 'products' %}" class="btn btn-outline-dark btn-lg px-5"><i
-                                    class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-4 bg-grey">
-                          <div class="p-5">
-                            <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                            <hr class="my-4">
-          
-                            <div class="d-flex justify-content-between mb-4">
-                              <h5 class="text-uppercase">{{item.quantity}}</h5>
-                              <h5>£ {{item.product.price}}</h5>
-                            </div>
-          
-                            <h5 class="text-uppercase mb-3">Shipping</h5>
-          
-                            <div class="mb-4 pb-2">
-                              <p>${{ delivery|floatformat:2 }}</p>
-                            </div>
-          
-                            <h5 class="text-uppercase mb-3">Free Delivery:</h5>
-          
-                            <div class="mb-5">
-                              <div class="form-outline">
-                                {% if free_delivery_delta > 0 %}
-                                        <p class="mb-1 text-danger">
-                                            You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
-                                        </p>
-                                    {% endif %}
-                              </div>
-                            </div>
-          
-                            <hr class="my-4">
-          
-                            <div class="d-flex justify-content-between mb-5">
-                              <h5 class="text-uppercase">Total price</h5>
-                              <h5>£ {{item.product.price}}</h5>
-                            </div>
-          
-                            <button type="button" class="btn btn-outline-dark btn-lg px-5">Secure Checkout</button>
-          
-                          </div>
-                        </div>
+                    
+
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="{% url 'products' %}" class="btn btn-outline-dark btn-lg px-5"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+                    {% for item in bag_items %}
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">{{item.quantity}}</h5>
+                      <h5>£ {{item.product.price}}</h5>
+                    </div>
+                    {% endfor %}
+                    <h5 class="text-uppercase mb-3">Shipping</h5>
+
+                    <div class="mb-4 pb-2">
+                      <p>£{{ delivery|floatformat:2 }}</p>
+                    </div>
+
+                    <h5 class="text-uppercase mb-3">Free Delivery:</h5>
+
+                    <div class="mb-5">
+                      <div class="form-outline">
+                        {% if free_delivery_delta > 0 %}
+                            <p class="mb-1 text-danger">
+                                You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+                            </p>
+                        {% endif %}
                       </div>
                     </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5>
+                        {% if grand_total %}
+                          £{{ grand_total|floatformat:2 }}
+                        {% else %}
+                          £0.00
+                        {% endif %}</h5>
+                    </div>
+                    <button type="button" class="btn btn-outline-dark btn-lg px-5">Secure Checkout</button>
+
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-
-
-
-
-        {% else %}
-        <p class="lead mb-5">Your bag is empty.</p>
-        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-            <span class="icon">
-                
-            </span>
-            <span class="btn btn-outline-dark btn-lg px-5"><i class="fas fa-chevron-left"></i>Keep Shopping</span>
-        </a>
-        {% endif %}
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+
+
+
+  {% else %}
+  <p class="lead mb-5">Your bag is empty.</p>
+  <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+    <span class="icon">
+        
+    </span>
+    <span class="btn btn-outline-dark btn-lg px-5"><i class="fas fa-chevron-left"></i>Keep Shopping</span>
+  </a>
+  {% endif %}
+  </div>
+  </div>
+  </div>
+  </section>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script type="text/javascript">
+  // Update quantity on click
+  $('.update-link').click(function(e) {
+      var form = $(this).prev('.update-form');
+      form.submit();
+  })
+
+  // Remove item and reload on click
+  $('.remove-item').click(function(e) {
+
+      var csrfToken = "{{ csrf_token }}";
+      var itemId = $(this).attr('product-id');
+      var url = `/bag/remove/${itemId}`;
+      var data = {'csrfmiddlewaretoken': csrfToken, 'item_id': itemId};
+
+      $.post(url, data)
+       .done(function() {
+           location.reload();
+       });
+  })
+
+//   document.addEventListener("DOMContentLoaded", function() {
+//     // Get all trash icon links
+//     var trashLinks = document.querySelectorAll(".text-danger");
+
+//     // Attach click event handler to each link
+//     trashLinks.forEach(function(link) {
+//         link.addEventListener("click", function(event) {
+//             event.preventDefault(); // Prevent the default link behavior
+
+//             // Extract the item_id from the link's id attribute
+//             var itemId = link.id.replace("remove-item-", "");
+
+//             // Perform the removal action (you'll need to implement this)
+//             removeItemFromBag(itemId);
+//         });
+//     });
+
+//     // Function to remove item from bag (replace with your logic)
+//     function removeItemFromBag(itemId) {
+//         // Implement your logic to remove the item with the given itemId from the bag
+//         // You might need to use AJAX to update the session or communicate with the server
+//         // After removing, you can update the bag display or reload the page
+//         // Example: You might want to make an API call to a Django view to remove the item
+//         // and then update the bag display or redirect to the bag page
+//     }
+// });
+</script>
+
 {% endblock %}
