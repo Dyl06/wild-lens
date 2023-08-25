@@ -22,7 +22,7 @@
                 {% for photographer in get_photographer_list %}
                   <li><a class="dropdown-item" href="{% url 'products' %}?photographer={{photographer.name}}">{{photographer.name}}</a></li>
                 {% endfor %}
-                <li><a class="dropdown-item" href="{% url 'products' %}?photographer=Bradley Henderson,Charles Henderson,Nic Andrew">All Photographers</a></li>
+                <li><a class="dropdown-item" href="{% url 'products' %}?photographer">All Photographers</a></li>
               </ul>
             </li>  
           <li class="nav-item dropdown">

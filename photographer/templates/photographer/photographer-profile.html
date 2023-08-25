@@ -63,9 +63,9 @@
               <div class="row g-2">
                 <div class="col">
                       <div class="photograph-item">
-                        {% for photographer in get_photographer_list %}
+                        
                           <img src="{% url 'products' %}?photographer={{photographer.name}}" alt="{{ photographer.name }}">
-                        {% endfor %}
+                        
                       </div>
               </div>
               </div>
