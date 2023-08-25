@@ -29,7 +29,7 @@
               <hr>
               <p class="card-text">{{ product.description }}</p>
               
-              <p class="card-text"><h4>Photographer:</h4>{{ product.photographer }}</p>
+              <p class="card-text"><h4>Photographer:</h4>{{ product.photographer.name }}</p>
             </div>
             <div class="card-footer">
               <a href="{% url 'product_page' product.id %}" class="btn btn-outline-dark btn-lg px-5">Buy Now</a>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col text-center mt-3">
+          <h2>Photographers</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-col-xl-4 g-4">
+      {% for photographer in photographers %}
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{ photographer.profile_picture.url }}" class="card-img-top" alt="{{ photographer.name }} style="width: 180px; border-radius: 10px;"">
+            <div class="card-body">
+              <h4 class="card-title">{{ photographer.name }}</h4>
+            </div>
+            <div class="card-footer">
+              <a href="{% url 'photographer_page' photographer.id %}" class="btn btn-outline-dark btn-lg px-5">View Profile</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+    
+{% endblock %}

@@ -1,6 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
+from django.db.models import Q
 from .models import Photographer
+from products.models import Product
 
 
 def photographer_profile(request):
@@ -42,3 +45,30 @@ def edit_profile(request):
         return redirect('photographer-profile')
 
     return render(request, 'photographer/edit-profile.html', {'user': user})
+
+
+# Create your views here.
+
+
+def all_photographers(request):
+    """ A view to show all the photographers on the site """
+
+    photographers = Photographer.objects.all()
+
+    context = {
+        'photographers': photographers,
+    }
+
+    return render(request, 'photographer/photographers.html', context)
+
+
+def photographer_page(request, photographer_id):
+    """ A view to show the individual photographer profile page """
+
+    photographer = get_object_or_404(Photographer, pk=photographer_id)
+
+    context = {
+        'photographer': photographer,
+    }
+
+    return render(request, 'photographer/photographer-profile.html', context)
