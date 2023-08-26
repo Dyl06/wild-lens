@@ -32,6 +32,8 @@ def checkout(request):
         if order_form.is_valid():
             order = order_form.save()
             for item_id, item_data in bag.items():
+                print(item_data)
+                print(item_id)
                 try:
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
@@ -42,12 +44,12 @@ def checkout(request):
                         )
                         order_line_item.save()
                     else:
-                        for size, quantity in item_data['items_by_size'].items():
+                        for size, quantity in item_data.items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
                                 quantity=quantity,
-                                # size=size,
+                                size=size,
                             )
                             order_line_item.save()
                 except Product.DoesNotExist:

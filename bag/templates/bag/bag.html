@@ -75,8 +75,8 @@
                     <hr class="my-4">
                     {% for item in bag_items %}
                     <div class="d-flex justify-content-between mb-4">
-                      <h5 class="text-uppercase">{{item.quantity}}</h5>
-                      <h5>£ {{item.product.price}}</h5>
+                      <h5 class="text-uppercase">Qty: {{item.quantity}}</h5>
+                      <h5>£ {{item.product.price}}ea</h5>
                     </div>
                     {% endfor %}
                     <h5 class="text-uppercase mb-3">Shipping</h5>
