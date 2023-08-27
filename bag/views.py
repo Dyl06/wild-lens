@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, HttpResponse, \
+    get_object_or_404
 from django.contrib import messages
 from products.models import Product
 
@@ -23,15 +24,22 @@ def add_to_bag(request, item_id):
     if item_id in list(bag.keys()):
         if size in bag[item_id].keys():
             bag[item_id][size] += quantity
-            messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id][size]}')
+            messages.success(
+                request,
+                f'Updated size {size.upper()} {product.name} quantity to {bag[item_id][size]}'  # noqa
+            )
         else:
             bag[item_id][size] = quantity
-            messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
+            messages.success(
+                request,
+                f'Added size {size.upper()} {product.name} to your bag')
     else:
         bag[item_id] = {
             size: quantity
         }
-        messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
+        messages.success(
+            request,
+            f'Added size {size.upper()} {product.name} to your bag')
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -66,9 +74,9 @@ def remove_from_bag(request, item_id):
 
 #     if quantity > 0:
 #         bag[item_id] = quantity
-#     else: 
+#     else:
 #         bag.pop(item_id)
-    
+
 #     request.session['bag'] = bag
 #     return redirect(reverse('view_bag'))
 
@@ -84,16 +92,22 @@ def adjust_bag(request, item_id):
     if size:
         if quantity > 0:
             bag[item_id][size] = quantity
-            messages.success(request, f'Updated size {size.upper()} {product.name} quantity to {bag[item_id][size]}')
+            messages.success(
+                request,
+                f'Updated size {size.upper()} {product.name} quantity to {bag[item_id][size]}')  # noqa
         else:
             del bag[item_id][size]
             if not bag[item_id]:
                 bag.pop(item_id)
-            messages.success(request, f'Removed size {size.upper()} {product.name} from your bag')
+            messages.success(
+                request,
+                f'Removed size {size.upper()} {product.name} from your bag')
     else:
         if quantity > 0:
             bag[item_id] = quantity
-            messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
+            messages.success(
+                request,
+                f'Updated {product.name} quantity to {bag[item_id]}')
         else:
             bag.pop(item_id)
             messages.success(request, f'Removed {product.name} from your bag')
