@@ -51,7 +51,7 @@ def add_to_bag(request, item_id):
                 bag[item_id][size] = quantity
                 messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
         else:
-            bag[item_id] = item_data
+            bag[item_id] = quantity
             messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
     else:
         if item_id in list(bag.keys()):
