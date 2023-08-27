@@ -43,7 +43,7 @@ def login_request(request):
             messages.success(request, f'Welcome back {user.username}')
             return redirect('/')
         else:
-            messages.error(request, 'Invalid email or password, please try again.')
+            messages.error(request, 'Invalid login details, please try again.')
     form = AuthenticationForm()
     context = {
         'form': form

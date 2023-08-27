@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-4 my-5 px-5">
+            <h1 class="display-4 logo-font text-black">
+                Oops, that page doesn't seem to be available
+            </h1>
+            <h4 class="my-5">
+                <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Back to Shop</a>
+            </h4>
+        </div>
+    </div>
+{% endblock %}
