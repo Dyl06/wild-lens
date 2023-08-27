@@ -11,6 +11,12 @@ body {
     font-size: larger;
 }
 
+.bg-opacity {
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: .9;
+    border: #343a40 1px solid;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;

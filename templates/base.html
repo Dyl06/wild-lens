@@ -29,9 +29,9 @@
     <title>Wild Lens Photography {% block extra_title %}{% endblock %}</title>
 </head>
 <body>
-  <header class="">
+  <header>
       
-      <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'home' %}"><h1>Wild Lense Photography</h1></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
                   </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" aria-current="page" href="{% url 'view_bag' %}">
+                  <a class="{% if grand_total %} font-weight-bold{% else %}text-black{% endif %} nav-link" aria-current="page" href="{% url 'view_bag' %}">
                     <div class="text-center">
                       <div><i class="fa-solid fa-cart-shopping"></i></div>
                       <p class="my-0">
@@ -138,7 +138,7 @@
   {% block content %}
   {% endblock %}
 
-  <footer class="container-fluid fixed-bottom">
+  <footer class="container-fluid bottom">
     <p>Area for my footer. Photographers icons and social media page.</p>
   </footer>
 
