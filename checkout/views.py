@@ -56,26 +56,20 @@ def checkout(request):
             order.save()
 
             for item_id, item_data in bag.items():
-                print(item_data)
-                print(item_id)
+                # print(item_data)
+                # print(item_id)
                 try:
                     product = Product.objects.get(id=item_id)
-                    if isinstance(item_data, int):
+
+                    for size, quantity in item_data.items():
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
-                            quantity=item_data,
+                            quantity=quantity,
+                            size=size
                         )
                         order_line_item.save()
-                    else:
-                        for size, quantity in item_data.items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                product=product,
-                                quantity=quantity,
-                                size=size,
-                            )
-                            order_line_item.save()
+
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "One of the products in your bag wasn't found in our database. "
