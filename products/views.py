@@ -10,34 +10,29 @@ def all_products(request):
     """ A view to show the products page """
 
     products = Product.objects.all()
-    query = None
+    query = ""
     categories = None
     subcategories = None
     photographers = None
 
     if request.GET:
         if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            print(categories)
-            products = products.filter(category__name__in=categories)
-            print(products)
-            categories = Category.objects.filter(name__in=categories)
-            print(categories)
+            categories = request.GET.getlist('category')  # Use getlist to handle multiple selections
+            if categories:
+                products = products.filter(category__name__in=categories)
+                categories = Category.objects.filter(name__in=categories)
 
         if 'photographer' in request.GET:
-            photographers = request.GET['photographer'].split(',')
-            print(photographers)
-            products = products.filter(photographer__name__in=photographers)
-            print(products)
-            photographers = Photographer.objects.filter(name__in=photographers)
-            print(photographers)
+            photographers = request.GET.getlist('photographer')
+            if photographers:
+                products = products.filter(photographer__name__in=photographers)
+                photographers = Photographer.objects.filter(name__in=photographers)
 
         if 'subcategory' in request.GET:
-            subcategories = request.GET['subcategory'].split(',')
-            products = products.filter(subcategory__name__in=subcategories)
-            print(products)
-            subcategories = SubCategory.objects.filter(name__in=subcategories)
-            print(subcategories)
+            subcategories = request.GET.getlist('subcategory')
+            if subcategories:
+                products = products.filter(subcategory__name__in=subcategories)
+                subcategories = SubCategory.objects.filter(name__in=subcategories)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -53,7 +48,7 @@ def all_products(request):
                        Q(description__icontains=query) |
                        Q(category__name__icontains=query) |
                        Q(subcategory__name__icontains=query))
-            products = products.filter(queries)
+            products = products.filter(queries).distinct()
 
             if not products.exists():
                 messages.error(
