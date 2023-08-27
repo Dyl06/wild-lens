@@ -42,11 +42,32 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "Your search didn't match any items, please try a different search criteria.")
+                messages.error(
+                                request,
+                                "Your search didn't match any items,"
+                                "please try a different search criteria."
+                               )
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(category__name__icontains=query) | Q(subcategory__name__icontains=query)
+            queries = (Q(name__icontains=query) |
+                       Q(description__icontains=query) |
+                       Q(category__name__icontains=query) |
+                       Q(subcategory__name__icontains=query))
             products = products.filter(queries)
+
+            if not products.exists():
+                messages.error(
+                                request,
+                                "Your search didn't match any items,"
+                                "please try a different search criteria."
+                               )
+                return redirect(reverse('products'))
+
+        queries = (Q(name__icontains=query) |
+                   Q(description__icontains=query) |
+                   Q(category__name__icontains=query) |
+                   Q(subcategory__name__icontains=query))
+        products = products.filter(queries).distinct()
 
     context = {
         'products': products,
