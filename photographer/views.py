@@ -73,7 +73,7 @@ def photographer_page(request, photographer_id):
 
     return render(request, 'photographer/photographer-profile.html', context)
 
-
+@login_required
 def add_photographer(request):
     """ Add a product to the store """
     if request.method == 'POST':
@@ -82,16 +82,21 @@ def add_photographer(request):
             photographer = form.save(commit=False)
             photographer.user = request.user
             photographer.save()
-            messages.success(request, 'Successfully added product!')
-            return redirect(reverse('add_product'))
+
+            #request.user.groups.set('Photographer')
+            #request.user.save()
+
+            messages.success(request, 'Successfully added photographer!')
+            return redirect(reverse('add_photographer'))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add photographer. Please ensure the form is valid.')
     else:
         form = AddPhotographForm()
     form = AddPhotographForm()
     template = 'photographer/add_photographer.html'
     context = {
         'form': form,
+        'has_special_access': request.user.has_perm('photographer.special_access')
     }
 
     return render(request, template, context)

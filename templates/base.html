@@ -66,7 +66,13 @@
                     </div>
                   </a>
                   <ul class="dropdown-menu">
-                  {% if request.user.is_authenticated %}  
+                   
+                  {% if request.user.is_authenticated %}
+                      {% if has_special_access %}
+                      <li><a class="dropdown-item" href="{% url 'add_photographer' %}">Add Photographs</a></li>
+                      {% else %}
+                        <p>NOT PHOTOGRAPHER</p>
+                      {% endif %}
                     {% if request.user.is_superuser %}
                       <li><a class="dropdown-item" href="{%url 'add_product' %}">Product Management</a></li>
                     {% endif %}
