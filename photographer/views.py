@@ -97,3 +97,32 @@ def add_photographer(request):
     }
 
     return render(request, template, context)
+
+
+# @login_required(login_url='login')
+def edit_photographer(request, photographer_id):
+    """ Edit a photographer profile """
+    photographer = get_object_or_404(Photographer, pk=photographer_id)
+    form = AddPhotographForm(instance=photographer)
+    
+    if request.user == photographer.user:
+        if request.method == 'POST':
+            form = AddPhotographForm(request.POST, request.FILES, instance=photographer)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Successfully updated profile!')
+                return redirect(reverse('photographer_profile', args=[photographer_id]))
+            else:
+                messages.error(request, 'Failed to update profile. Please ensure the form is valid.')
+        else:
+            form = AddPhotographForm(instance=photographer)
+            messages.info(request, f'You are editing {photographer.name}')
+
+    template = 'photographer/edit_photographer.html'
+    context = {
+        'photographer': photographer,
+        'form': form,
+
+    }
+
+    return render(request, template, context)

@@ -43,18 +43,46 @@
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body align-items-center">
-              <ul class="navbar-nav justify-content-end flex-grow-1">
+              <ul class="navbar-nav nav-tabs justify-content-end flex-grow-1">
+                
                 <li class="nav-item">
-                  <a class="nav-link active text-black" aria-current="page" href="{% url 'home' %}">Home</a>
+                  <a class="nav-link text-black" href="{% url 'products' %}">All Prints</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'products' %}?category=Animals">Animals</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products' %}?category=Birds">Birds</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products' %}?category=Landscapes">Landscapes</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products' %}?category=Sunset-Sunrise">Sunsets &amp Sunrises</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
+                  </ul>
+                </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Photographers</a>
+                    <ul class="dropdown-menu">
+                      {% for photographer in get_photographer_list %}
+                        <li><a class="dropdown-item" href="{% url 'products' %}?photographer={{photographer.name}}">{{photographer.name}}</a></li>
+                      {% endfor %}
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'photographers' %}">Profiles</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Big 5</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'products' %}?subcategory=Lion">Lion</a></li>
+                      <li><a class="dropdown-item" href="{% url 'products' %}?subcategory=Leopard">Leopard</a></li>
+                      <li><a class="dropdown-item" href="{% url 'products' %}?subcategory=Rhino">Rhino</a></li>
+                      <li><a class="dropdown-item" href="{% url 'products' %}?subcategory=Buffalo">Buffalo</a></li>
+                      <li><a class="dropdown-item" href="{% url 'products' %}?subcategory=Elephant">Elephant</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'products' %}?category=Big 5">All Big 5</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-black" href="{% url 'products' %}">Buy Prints</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-black" href="{% url 'photographers' %}">Sell Your Images</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-black" href="{% url 'photographer-profile' %}">About</a>
+                  <a class="nav-link text-black" href="{% url 'add_photographer' %}">About</a>
                 </li>
               </ul>
               <ul class="navbar-nav justify-content-end flex-grow-1">
