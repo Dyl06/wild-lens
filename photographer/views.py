@@ -7,12 +7,10 @@ from products.models import Product
 from .forms import AddPhotographForm
 
 
-
 def photographer_profile(request):
     """ A view to return the photographer profile page """
 
     return render(request, 'photographer/photographer-profile.html')
-
 
 
 @login_required
@@ -34,7 +32,7 @@ def edit_profile(request):
         profile.social_facebook = request.POST['social_facebook']
         profile.social_instagram = request.POST['social_instagram']
         profile.phone = request.POST['phone']
-        
+
         # Check if a new profile picture was uploaded
         if 'profile_picture' in request.FILES:
             profile.profile_picture = request.FILES['profile_picture']
@@ -76,10 +74,22 @@ def photographer_page(request, photographer_id):
     return render(request, 'photographer/photographer-profile.html', context)
 
 
-def add_photograph(request):
+def add_photographer(request):
     """ Add a product to the store """
+    if request.method == 'POST':
+        form = AddPhotographForm(request.POST, request.FILES)
+        if form.is_valid():
+            photographer = form.save(commit=False)
+            photographer.user = request.user
+            photographer.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+    else:
+        form = AddPhotographForm()
     form = AddPhotographForm()
-    template = 'photographer/add_photograph.html'
+    template = 'photographer/add_photographer.html'
     context = {
         'form': form,
     }
