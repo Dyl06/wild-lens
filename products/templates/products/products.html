@@ -33,6 +33,12 @@
             </div>
             <div class="card-footer">
               <a href="{% url 'product_page' product.id %}" class="btn btn-outline-dark btn-lg px-5">Buy Now</a>
+              {% if request.user.is_superuser %}
+                <small class="ml-3">
+                  <a class="btn btn-outline-success btn-sm" href="{% url 'edit_product' product.id %}">Edit</a>
+                  <a class=" btn btn-outline-danger btn-sm" href="{% url 'delete_product' product.id %}">Delete</a>
+                </small>
+              {% endif %}
             </div>
           </div>
         </div>
