@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-tabs d-flex">
           <li class="nav-item dropdown">
-            <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
+            <a class="nav-link text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{% url 'products' %}?category=Animals">Animals</a></li>
               <li><a class="dropdown-item" href="{% url 'products' %}?category=Birds">Birds</a></li>
@@ -17,7 +17,7 @@
             </ul>
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Photographers</a>
+              <a class="nav-link text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Photographers</a>
               <ul class="dropdown-menu">
                 {% for photographer in get_photographer_list %}
                   <li><a class="dropdown-item" href="{% url 'products' %}?photographer={{photographer.name}}">{{photographer.name}}</a></li>
@@ -26,7 +26,7 @@
               </ul>
             </li>  
           <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Big 5</a>
+              <a class="nav-link text-black" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Big 5</a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'products' %}?subcategory=Lion">Lion</a></li>
                 <li><a class="dropdown-item" href="{% url 'products' %}?subcategory=Leopard">Leopard</a></li>

@@ -45,22 +45,22 @@
             <div class="offcanvas-body align-items-center">
               <ul class="navbar-nav justify-content-end flex-grow-1">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                  <a class="nav-link active text-black" aria-current="page" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'products' %}">Buy Prints</a>
+                  <a class="nav-link text-black" href="{% url 'products' %}">Buy Prints</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'photographers' %}">Sell Your Images</a>
+                  <a class="nav-link text-black" href="{% url 'photographers' %}">Sell Your Images</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'photographer-profile' %}">About</a>
+                  <a class="nav-link text-black" href="{% url 'photographer-profile' %}">About</a>
                 </li>
               </ul>
               <ul class="navbar-nav justify-content-end flex-grow-1">
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="text-center">
+                    <div class="text-center text-black">
                       <div><i class="fa-solid fa-user"></i></div>
                       <p class="my-0">My Account</p>
                     </div>
@@ -85,7 +85,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="{% if grand_total %} font-weight-bold{% else %}text-black{% endif %} nav-link" aria-current="page" href="{% url 'view_bag' %}">
-                    <div class="text-center">
+                    <div class="text-center text-black">
                       <div><i class="fa-solid fa-cart-shopping"></i></div>
                       <p class="my-0">
                           {% if grand_total %}
