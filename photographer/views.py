@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Photographer
 from products.models import Product
+from .forms import AddPhotographForm
+
 
 
 def photographer_profile(request):
@@ -72,3 +74,14 @@ def photographer_page(request, photographer_id):
     }
 
     return render(request, 'photographer/photographer-profile.html', context)
+
+
+def add_photograph(request):
+    """ Add a product to the store """
+    form = AddPhotographForm()
+    template = 'photographer/add_photograph.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

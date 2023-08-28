@@ -6,4 +6,5 @@ urlpatterns = [
     path('edit-profile/', views.edit_profile, name='edit-profile'),
     path('', views.all_photographers, name='photographers'),
     path('<photographer_id>', views.photographer_page, name='photographer_page'),
+    path('add_photograph', views.add_photograph, name='add_photograph'),
 ]
