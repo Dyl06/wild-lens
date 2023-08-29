@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import NewUserForm
+from .forms import NewUserForm, NewsletterSignupForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -54,3 +54,20 @@ def login_request(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+
+def newsletter_signup(request):
+    if request.method == 'POST':
+        form = NewsletterSignupForm(request.POST)
+        if form.is_valid():
+            # Here you can save the email to your database or integrate with a newsletter service
+            # For now, we'll just print the email
+            email = form.cleaned_data['email']
+            print(f"Subscribed email: {email}")
+            
+            messages.success(request, 'You have successfully subscribed to our newsletter!')
+            return redirect('newsletter-signup')
+    else:
+        form = NewsletterSignupForm()
+    
+    return render(request, 'newsletter_signup.html', {'form': form})

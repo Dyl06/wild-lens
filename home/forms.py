@@ -18,3 +18,7 @@ class NewUserForm(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+
+class NewsletterSignupForm(forms.Form):
+    email = forms.EmailField(label='Email Address', widget=forms.EmailInput(attrs={'class': 'form-control', 'required': 'true'}))

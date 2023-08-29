@@ -28,5 +28,20 @@
                 <a href="{% url 'add_photographer' %}" class="shop-now-button btn btn-outline-dark btn-lg px-5 rounded-0 text-uppercase py-3">Register Now</a>
             </h4>
     </div>
+    <div class="col-md-6 col-lg-6 bg-opacity mt-auto align-self-bottom">
+        <h1 class="mt-2 display-4 logo-font text-black">
+            Subscribe to Our Newsletter
+        </h1>
+        <p class="logo-font text-black">Stay updated with the latest wildlife photography and news!</p>
+        <form method="post">
+            {% csrf_token %}
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        
+        <button type="submit" class="btn btn-outline-dark">Subscribe</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
