@@ -1,14 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-<!-- {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %} -->
-
 {% block content %}
 <section class="h-100 gradient-custom-2">
     <div class="container py-5 h-100">
@@ -59,15 +51,6 @@
                     alt="image 1" class="w-100 rounded-3">
                 </div>
                 {% endfor %}
-              </div>
-              <div class="row g-2">
-                <div class="col">
-                      <div class="photograph-item">
-                        
-                          <img src="{% url 'products' %}?photographer={{photographer.name}}" alt="{{ photographer.name }}">
-                        
-                      </div>
-              </div>
               </div>
             </div>
           </div>
