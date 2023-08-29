@@ -37,8 +37,11 @@ def photographer_page(request, photographer_id):
 
     photographer = get_object_or_404(Photographer, pk=photographer_id)
 
+    two_photos = Product.objects.filter(photographer=photographer)[:2]
+
     context = {
         'photographer': photographer,
+        'two_photos': two_photos
     }
 
     return render(request, 'photographer/photographer-profile.html', context)
