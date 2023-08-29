@@ -22,7 +22,7 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, "Registration successful.")
+            messages.info(request, "Registration successful.")
             return redirect("/")
         else:
             messages.error(request, form.errors)
@@ -40,7 +40,7 @@ def login_request(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, f'Welcome back {user.username}')
+            messages.info(request, f'Welcome back {user.username}')
             return redirect('/')
         else:
             messages.error(request, 'Invalid login details, please try again.')
@@ -66,9 +66,12 @@ def newsletter_signup(request):
             email = form.cleaned_data['email']
             messages.info(request, 'You have successfully subscribed to our newsletter!')
             
-            messages.success(request, 'You have successfully subscribed to our newsletter!')
-            return redirect('newsletter-signup')
-    else:
-        form = NewsletterSignupForm()
-    
-    return render(request, 'newsletter_signup.html', {'form': form})
+            return redirect('/')
+        else:
+            messages.error(request, 'Invalid details, please try again.')
+    form = NewsletterSignupForm()
+    context = {
+        'form': form
+    }
+
+    return render(request, 'newsletter_signup.html', context)

@@ -19,7 +19,7 @@ def all_products(request):
 
     if request.GET:
         if 'category' in request.GET:
-            categories = request.GET.getlist('category')  # Use getlist to handle multiple selections
+            categories = request.GET.getlist('category')
             if categories:
                 products = products.filter(category__name__in=categories)
                 categories = Category.objects.filter(name__in=categories)
@@ -98,7 +98,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
-            messages.success(request, 'Successfully added product!')
+            messages.info(request, 'Successfully added product!')
             return redirect(reverse('product_page', args=[product.id]))
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
@@ -125,7 +125,7 @@ def edit_product(request, product_id):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully updated product!')
+            messages.info(request, 'Successfully updated product!')
             return redirect(reverse('product_page', args=[product.id]))
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')

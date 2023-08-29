@@ -37,7 +37,7 @@ def photographer_page(request, photographer_id):
 
     photographer = get_object_or_404(Photographer, pk=photographer_id)
 
-    two_photos = Product.objects.filter(photographer=photographer)[:2]
+    two_photos = Product.objects.filter(photographer=photographer)[:4]
 
     context = {
         'photographer': photographer,
@@ -60,7 +60,7 @@ def add_photographer(request):
             request.user.groups.set(photographers_group)
             request.user.save()
 
-            messages.success(request, 'Successfully added photographer!')
+            messages.info(request, 'Successfully added photographer!')
             return redirect(reverse('add_photographer'))
         else:
             messages.error(request, 'Failed to add photographer. Please ensure the form is valid.')
@@ -86,7 +86,7 @@ def edit_photographer(request):
             form = AddPhotographForm(request.POST, request.FILES, instance=photographer)
             if form.is_valid():
                 form.save()
-                messages.success(request, 'Successfully updated profile!')
+                messages.info(request, 'Successfully updated profile!')
                 return redirect(reverse('photographers'))
             else:
                 messages.error(request, 'Failed to update profile. Please ensure the form is valid.')
