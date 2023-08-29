@@ -22,7 +22,7 @@
       {% for photographer in photographers %}
         <div class="col">
           <div class="card h-100">
-            {% if photographer.profile.picture != None %}
+            {% if photographer.profile_picture != None %}
             <img src="{{ photographer.profile_picture.url }}" class="card-img-top" alt="{{ photographer.name }} style="width: 180px; border-radius: 10px;"">
             {% endif %}
             <div class="card-body">
