@@ -57,13 +57,14 @@ def logout_view(request):
 
 
 def newsletter_signup(request):
+    form = NewsletterSignupForm()
+
     if request.method == 'POST':
         form = NewsletterSignupForm(request.POST)
         if form.is_valid():
-            # Here you can save the email to your database or integrate with a newsletter service
-            # For now, we'll just print the email
+            user = form.save()
             email = form.cleaned_data['email']
-            print(f"Subscribed email: {email}")
+            messages.info(request, 'You have successfully subscribed to our newsletter!')
             
             messages.success(request, 'You have successfully subscribed to our newsletter!')
             return redirect('newsletter-signup')

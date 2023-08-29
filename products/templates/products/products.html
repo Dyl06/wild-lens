@@ -22,7 +22,7 @@
       {% for product in products %}
         <div class="col">
           <div class="card h-100">
-            <img src="{% static 'product.image.url' %}" class="card-img-top" alt="{{ product.name }}">
+            <img src="{{product.image.url}}" class="card-img-top" alt="{{ product.name }}">
             <div class="card-body">
               <h5 class="card-title">{{ product.name }}</h5>
               <p class="card-text"> from £{{ product.price }}</p>
