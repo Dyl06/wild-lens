@@ -5,6 +5,13 @@ from django.db.models import Q
 from .models import Photographer
 from products.models import Product
 from .forms import AddPhotographForm
+from django.contrib.auth.models import Group
+
+
+def is_photographer(request):
+    GROUP_NAME_FOR_PHOTOGRAPHERS = "Photographers"
+    user_is_photographer = request.user.groups.filter(name=GROUP_NAME_FOR_PHOTOGRAPHERS).exists()
+    return user_is_photographer
 
 
 def photographer_profile(request):
@@ -15,13 +22,19 @@ def photographer_profile(request):
 
 @login_required
 def edit_profile(request):
+
+    if not self.is_photographer(request):
+        # error
+        return
+
     user = request.user
     try:
         profile = Photographer.objects.get(user=user)
     except Photographer.DoesNotExist:
         # Create a profile if it doesn't exist
-        profile = Photographer(user=user)
-        profile.save()
+        # profile = Photographer(user=user)
+        # profile.save()
+        return redirect('/')
 
     if request.method == 'POST':
         # Update the profile fields with the submitted data
@@ -83,6 +96,10 @@ def add_photographer(request):
             photographer.user = request.user
             photographer.save()
 
+            photographers_group = Group.objects.filter(name='Photographers')
+            request.user.groups.set(photographers_group)
+            request.user.save()
+
             messages.success(request, 'Successfully added photographer!')
             return redirect(reverse('add_photographer'))
         else:
@@ -93,25 +110,24 @@ def add_photographer(request):
     template = 'photographer/add_photographer.html'
     context = {
         'form': form,
-        'has_special_access': request.user.has_perm('photographer.special_access')
     }
 
     return render(request, template, context)
 
 
 # @login_required(login_url='login')
-def edit_photographer(request, photographer_id):
+def edit_photographer(request):
     """ Edit a photographer profile """
-    photographer = get_object_or_404(Photographer, pk=photographer_id)
+
+    photographer = get_object_or_404(Photographer, user=request.user)
     form = AddPhotographForm(instance=photographer)
-    
     if request.user == photographer.user:
         if request.method == 'POST':
             form = AddPhotographForm(request.POST, request.FILES, instance=photographer)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Successfully updated profile!')
-                return redirect(reverse('photographer_profile', args=[photographer_id]))
+                return redirect(reverse('photographers'))
             else:
                 messages.error(request, 'Failed to update profile. Please ensure the form is valid.')
         else:
