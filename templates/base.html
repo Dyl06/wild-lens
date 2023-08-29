@@ -101,20 +101,19 @@
                   {% if request.user.is_authenticated %}
                       {% if user_is_photographer %}
                       <li><a class="dropdown-item" href="{% url 'add_photographer' %}">Add Photographs</a></li>
+                      <li><a class="dropdown-item" href="{% url 'edit_photographer' %}">Edit Photographs</a></li>
                       <li><a class="dropdown-item" href="{% url 'edit_photographer' %}">Edit Photographer Profile</a></li>
-                      {% else %}
-                        <p>NOT PHOTOGRAPHER</p>
                       {% endif %}
-                    {% if request.user.is_superuser %}
-                      <li><a class="dropdown-item" href="{%url 'add_product' %}">Product Management</a></li>
-                    {% endif %}
-                    
-                      <li><a class="dropdown-item" href="{% url 'profile' %}">My Buying Profile</a></li>
-                      <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                      <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
-                      <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
-                    {% endif %}
+                      {% if request.user.is_superuser %}
+                        <li><a class="dropdown-item" href="{%url 'add_product' %}">Add Products</a></li>
+                      {% endif %}
+                      
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">My Buying Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                      {% else %}
+                        <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+                      {% endif %}
                     <li>
                       <hr class="dropdown-divider">
                     </li>
