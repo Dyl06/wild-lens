@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 from .models import Photographer
 
 
@@ -16,3 +17,5 @@ class AddPhotographForm(forms.ModelForm):
             'email',
             'phone'
         )
+
+    profile_picture = forms.ImageField(label='profile_picture', required=True, widget=CustomClearableFileInput)

@@ -1,4 +1,5 @@
 from django import forms
+from .widgets import CustomClearableFileInput
 from .models import Product, Category, SubCategory
 from photographer.models import Photographer
 
@@ -16,6 +17,8 @@ class ProductForm(forms.ModelForm):
             'price',
             'image',
         )
+
+    image = forms.ImageField(label='Image', required=True, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
