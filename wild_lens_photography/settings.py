@@ -10,7 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +29,7 @@ SECRET_KEY = 'django-insecure-l2yptexj0x-#d86zqj@(2mja2xu*&jta7whuj#p!%-wqju9j7w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-dyl06-wildlens-0oyg6fykr23.ws-eu104.gitpod.io']
+ALLOWED_HOSTS = ['wildlensphotography-70bfdf68090b.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profiles',
+    'cloudinary',
 
     # Other
     'crispy_forms',
@@ -62,6 +67,12 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'wild_lens_photography.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+cloudinary.config(
+  cloud_name="dhg26vgn9",
+  api_key="688199614942374",
+  api_secret="xgIcbHUPFDmmJgJKaeQQq2WD5JU"
+)
 
 TEMPLATES = [
     {
@@ -112,14 +123,17 @@ WSGI_APPLICATION = 'wild_lens_photography.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

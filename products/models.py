@@ -1,4 +1,5 @@
 from django.db import models, transaction
+from cloudinary.models import CloudinaryField
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from photographer.models import Photographer
@@ -35,7 +36,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField()
+    image = CloudinaryField('image')
     SIZE_CHOICES = [
         ('S', 'Small'),
         ('M', 'Medium'),

@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -9,8 +10,7 @@ from django.dispatch import receiver
 class Photographer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100, null=True)
-    profile_picture = models.ImageField(upload_to='photographer_profiles/',
-                                        blank=True, null=True)
+    profile_picture = CloudinaryField(blank=True, null=True)
     bio = models.TextField(blank=True)
     location = models.CharField(max_length=100, blank=True)
     website = models.URLField(blank=True)
