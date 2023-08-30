@@ -61,7 +61,7 @@ def add_photographer(request):
             request.user.groups.set(photographers_group)
             request.user.save()
 
-            messages.info(request, 'Successfully added photographer!')
+            messages.success(request, 'Successfully added photographer!')
             return redirect(reverse('add_photographer'))
         else:
             messages.error(
@@ -89,7 +89,7 @@ def edit_photographer(request):
                 request.POST, request.FILES, instance=photographer)
             if form.is_valid():
                 form.save()
-                messages.info(request, 'Successfully updated profile!')
+                messages.success(request, 'Successfully updated profile!')
                 return redirect(reverse('photographers'))
             else:
                 messages.error(
