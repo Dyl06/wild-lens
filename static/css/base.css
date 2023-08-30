@@ -161,6 +161,14 @@ body {
     left: 0;
     right: 0
   }
+  
+/* Mailchimp Styling  */
+  #mc_embed_signup{
+    background:#fff; 
+    false;clear:left;
+    font:14px Helvetica,Arial,sans-serif; 
+    width: 600px;
+}
 
 /* css from checkout form, used mdbbootstrap
 form and modified to my needs. */
