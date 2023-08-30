@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:/accounts/
+Disallow:/bag/
+Sitemap: https://wildlensphotography-70bfdf68090b.herokuapp.com/sitemap.xml
