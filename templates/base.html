@@ -114,12 +114,10 @@
                    
                   {% if request.user.is_authenticated %}
                       {% if user_is_photographer %}
-                      <li><a class="dropdown-item" href="{% url 'add_photographer' %}">Add Photographs</a></li>
-                      <li><a class="dropdown-item" href="{% url 'edit_photographer' %}">Edit Photographs</a></li>
+                      <li><a class="dropdown-item" href="{%url 'add_product' %}">Add Photographs</a></li>
                       <li><a class="dropdown-item" href="{% url 'edit_photographer' %}">Edit Photographer Profile</a></li>
-                      {% endif %}
-                      {% if request.user.is_superuser %}
-                        <li><a class="dropdown-item" href="{%url 'add_product' %}">Add Products</a></li>
+                      {% else %}
+                      <li><a class="dropdown-item" href="{% url 'add_photographer' %}">Sign Up As Photographer</a></li>
                       {% endif %}
                       
                         <li><a class="dropdown-item" href="{% url 'profile' %}">My Buying Profile</a></li>
