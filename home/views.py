@@ -22,7 +22,7 @@ def register_request(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.info(request, "Registration successful.")
+            messages.success(request, "Registration successful.")
             return redirect("/")
         else:
             messages.error(request, form.errors)
@@ -40,7 +40,7 @@ def login_request(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.info(request, f'Welcome back {user.username}')
+            messages.success(request, f'Welcome back {user.username}')
             return redirect('/')
         else:
             messages.error(request, 'Invalid login details, please try again.')
