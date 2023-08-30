@@ -14,7 +14,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True, primary_key=True,
+                    serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=254)),
             ],
             options={
@@ -24,7 +26,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SubCategory',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True, primary_key=True,
+                    serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=254)),
             ],
             options={
@@ -34,14 +38,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Product',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True, primary_key=True, serialize=False,
+                    verbose_name='ID')),
                 ('sku', models.CharField(max_length=20, unique=True)),
                 ('name', models.CharField(max_length=255)),
                 ('description', models.TextField()),
                 ('price', models.DecimalField(decimal_places=2, max_digits=6)),
                 ('image', models.ImageField(upload_to='')),
                 ('category', models.ManyToManyField(to='products.Category')),
-                ('subcategory', models.ManyToManyField(to='products.SubCategory')),
+                ('subcategory', models.ManyToManyField(
+                    to='products.SubCategory')),
             ],
         ),
     ]

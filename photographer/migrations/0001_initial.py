@@ -17,9 +17,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Photographer',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True,
+                    primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
-                ('profile_picture', models.ImageField(blank=True, null=True, upload_to='photographer_profiles/')),
+                ('profile_picture', models.ImageField(
+                    blank=True, null=True,
+                    upload_to='photographer_profiles/')),
                 ('bio', models.TextField(blank=True)),
                 ('location', models.CharField(blank=True, max_length=100)),
                 ('website', models.URLField(blank=True)),
@@ -27,7 +31,9 @@ class Migration(migrations.Migration):
                 ('social_instagram', models.URLField(blank=True)),
                 ('email', models.EmailField(blank=True, max_length=254)),
                 ('phone', models.CharField(blank=True, max_length=20)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

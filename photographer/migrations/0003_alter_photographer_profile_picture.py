@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='photographer',
             name='profile_picture',
-            field=cloudinary.models.CloudinaryField(blank=True, max_length=255, null=True),
+            field=cloudinary.models.CloudinaryField(
+                blank=True, max_length=255, null=True),
         ),
     ]

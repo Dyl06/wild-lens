@@ -8,5 +8,6 @@ urlpatterns = [
     path('<int:photographer_id>/', views.photographer_page,
          name='photographer_page'),
     path('add_photographer/', views.add_photographer, name='add_photographer'),
-    path('edit_photographer/', views.edit_photographer, name='edit_photographer'),
+    path(
+     'edit_photographer/', views.edit_photographer, name='edit_photographer'),
 ]

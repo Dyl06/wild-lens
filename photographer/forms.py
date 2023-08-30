@@ -18,4 +18,6 @@ class AddPhotographForm(forms.ModelForm):
             'phone'
         )
 
-    profile_picture = forms.ImageField(label='profile_picture', required=True, widget=CustomClearableFileInput)
+    profile_picture = forms.ImageField(
+        label='profile_picture',
+        required=True, widget=CustomClearableFileInput)

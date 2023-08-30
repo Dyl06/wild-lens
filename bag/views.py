@@ -65,22 +65,6 @@ def remove_from_bag(request, item_id):
         return HttpResponse(status=500)
 
 
-# def adjust_bag(request, item_id):
-#     """Adjust the quantity of a product in the bag"""
-
-#     quantity = int(request.POST.get('quantity'))
-#     size = request.POST['size']
-#     bag = request.session.get('bag', {})
-
-#     if quantity > 0:
-#         bag[item_id] = quantity
-#     else:
-#         bag.pop(item_id)
-
-#     request.session['bag'] = bag
-#     return redirect(reverse('view_bag'))
-
-
 def adjust_bag(request, item_id):
     """Adjust the quantity of the specified product to the specified amount"""
 

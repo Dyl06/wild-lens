@@ -1,10 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
-from django.contrib.auth.models import Permission
-from django.contrib.contenttypes.models import ContentType
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 
 class Photographer(models.Model):

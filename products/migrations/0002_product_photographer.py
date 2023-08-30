@@ -15,6 +15,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='photographer',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='photographer.photographer'),
+            field=models.ForeignKey(
+                default='',
+                on_delete=django.db.models.deletion.CASCADE,
+                to='photographer.photographer'),
         ),
     ]

@@ -27,14 +27,17 @@ def all_products(request):
         if 'photographer' in request.GET:
             photographers = request.GET.getlist('photographer')
             if photographers:
-                products = products.filter(photographer__name__in=photographers)
-                photographers = Photographer.objects.filter(name__in=photographers)
+                products = products.filter(
+                    photographer__name__in=photographers)
+                photographers = Photographer.objects.filter(
+                    name__in=photographers)
 
         if 'subcategory' in request.GET:
             subcategories = request.GET.getlist('subcategory')
             if subcategories:
                 products = products.filter(subcategory__name__in=subcategories)
-                subcategories = SubCategory.objects.filter(name__in=subcategories)
+                subcategories = SubCategory.objects.filter(
+                    name__in=subcategories)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -88,11 +91,13 @@ def product_page(request, product_id):
 
     return render(request, 'products/product-page.html', context)
 
+
 @login_required
 def add_product(request):
     """ Add a product to the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry only store owners can access this page.')
+        messages.error(
+            request, 'Sorry only store owners can access this page.')
         return redirect(reverse('home'))
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -101,7 +106,10 @@ def add_product(request):
             messages.info(request, 'Successfully added product!')
             return redirect(reverse('product_page', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                            request,
+                            'Failed to add product. Please ensure valid form.'
+                           )
     else:
         form = ProductForm()
 
@@ -117,7 +125,8 @@ def add_product(request):
 def edit_product(request, product_id):
     """ Edit a product in the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry only store owners can access this page.')
+        messages.error(
+            request, 'Sorry only store owners can access this page.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -128,7 +137,9 @@ def edit_product(request, product_id):
             messages.info(request, 'Successfully updated product!')
             return redirect(reverse('product_page', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update product. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -146,7 +157,8 @@ def edit_product(request, product_id):
 def delete_product(request, product_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry only store owners can access this page.')
+        messages.error(
+            request, 'Sorry only store owners can access this page.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)

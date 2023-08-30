@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import NewUserForm, NewsletterSignupForm
+from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -54,24 +54,3 @@ def login_request(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
-
-
-def newsletter_signup(request):
-    form = NewsletterSignupForm()
-
-    if request.method == 'POST':
-        form = NewsletterSignupForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            email = form.cleaned_data['email']
-            messages.info(request, 'You have successfully subscribed to our newsletter!')
-            
-            return redirect('/')
-        else:
-            messages.error(request, 'Invalid details, please try again.')
-    form = NewsletterSignupForm()
-    context = {
-        'form': form
-    }
-
-    return render(request, 'newsletter_signup.html', context)
